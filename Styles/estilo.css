@@ -1,0 +1,25 @@
+.responsive {
+    width: 70%;
+    height: 60%;
+}
+
+.responsive2 {
+    width: 40%;
+    height: 100%;
+}
+
+h1 {
+    color: white;
+    font-family: sans-serif;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.texto {
+    color: rgb(154, 157, 141);
+}
