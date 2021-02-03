@@ -1,0 +1,17 @@
+.tablesize {
+    font-size: 13px !important;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: transparent;
+    opacity: 1;
+    border: 0;
+    font-size: 13px !important;
+    height: 15px;
+    width: auto;
+}
+
+::placeholder {
+    color: white;
+}

@@ -12,8 +12,20 @@ export class UserService {
 
   constructor(private _http: HttpClient) { }
   registraruser(UserParams: User): Observable<any> {
-    let params = JSON.stringify(UserParams)
+    let params = JSON.stringify(UserParams);
     let options = new HttpHeaders().set('Content-type','application/json');
-    return this._http.post(this.apiURL, params, {headers:options}).pipe((res) => res);
+    return this._http.post(this.apiURL + "user/", params, {headers:options}).pipe((res) => res);
+  }
+
+  showuser(email: User["email"]): Observable<any> {
+    
+    let options = {headers: new HttpHeaders({'Content-type':'application/json'})};
+    return this._http.get(this.apiURL + "user/"+email, options).pipe((res) => res);
+  }
+
+  showusers(): Observable<any> {
+    
+    let options = {headers: new HttpHeaders({'Content-type':'application/json'})};
+    return this._http.get(this.apiURL + "allUsers/", options).pipe((res) => res);
   }
 }

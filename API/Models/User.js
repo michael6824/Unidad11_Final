@@ -7,6 +7,7 @@ var UserSchema = new Schema({
     cc: Number,
     date: String,
     email: String,
+    pass: String,
     img: { data: Buffer, contentType: String }
 });
 

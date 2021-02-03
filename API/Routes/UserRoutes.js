@@ -11,6 +11,7 @@ api.post('/user', UserController.create);
 api.put('/user/:iduser', UserController.update);
 api.delete('/user/:iduser', UserController.remove);
 api.get('/allUsers', UserController.getAllUsers)
+api.get('/user/:email', UserController.getUser)
     //Vehiculos
 api.post('/vehicle', VehicleController.create);
 api.put('/vehicle/:plate', VehicleController.update);

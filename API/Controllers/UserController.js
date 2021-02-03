@@ -10,7 +10,7 @@ function create(req, res) {
     user.email = params.email;
     user.date = params.date;
     user.cc = params.cc;
-
+    user.pass = params.pass;
     user.save((error, userCreated) => {
         if (error) {
             res.status(500).send({
@@ -95,10 +95,29 @@ function getAllUsers(req, res) {
     })
 }
 
+function getUser(req, res) {
+    var email1 = req.params.email;
+    User.find({ email: { $regex: email1 } }, (error, allUsers) => {
+        if (error) {
+            res.status(500).send({
+                statusCode: 500,
+                message: "Error en el Servidor"
+            })
+        } else {
+            res.status(200).send({
+                statusCode: 200,
+                message: "Usuario correcto",
+                allUsers: allUsers
+            })
+        }
+    })
+}
+
 
 module.exports = {
     create,
     update,
     remove,
-    getAllUsers
+    getAllUsers,
+    getUser
 }

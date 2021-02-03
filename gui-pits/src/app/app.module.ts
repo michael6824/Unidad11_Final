@@ -10,6 +10,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { QuienessomosComponent } from './components/quienessomos/quienessomos.component';
 import { ServicesComponent } from './components/services/services.component';
 import { SesionComponent } from './components/sesion/sesion.component';
+import { ListUsersComponent } from './components/list-users/list-users.component';
+import { ListVehiclesComponent } from './components/list-vehicles/list-vehicles.component';
+import { ListEnsurancesComponent } from './components/list-ensurances/list-ensurances.component';
+import { ListFinesComponent } from './components/list-fines/list-fines.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,12 @@ import { SesionComponent } from './components/sesion/sesion.component';
     FooterComponent,
     QuienessomosComponent,
     ServicesComponent,
-    SesionComponent
+    SesionComponent,
+    ListUsersComponent,
+    ListVehiclesComponent,
+    ListEnsurancesComponent,
+    ListFinesComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpClientModule
