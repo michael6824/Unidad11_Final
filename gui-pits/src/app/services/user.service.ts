@@ -9,7 +9,7 @@ import { User } from '../models/user';
 export class UserService {
 
   apiURL = 'http://localhost:3000/api/';
-
+  selectedUser: User = new User("","","",0,"","","");
   constructor(private _http: HttpClient) { }
   registraruser(UserParams: User): Observable<any> {
     let params = JSON.stringify(UserParams);

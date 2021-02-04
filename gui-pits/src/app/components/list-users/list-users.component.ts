@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-list-users',
@@ -10,13 +11,19 @@ import {UserService} from '../../services/user.service';
 export class ListUsersComponent implements OnInit {
   public user: User;
   public findemail: String;
+  public show:boolean = false;
+  public buttonName:any = 'Show';
+
 public FoundUser : [];
   public FoundUsers : any = [];
   constructor(private UserService: UserService) { 
     this.user = new User("","","",0,"","","");
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+  onEdit(product: User) {
+    this.UserService.selectedUser = Object.assign({}, product);
   }
 
   ShowUser(){

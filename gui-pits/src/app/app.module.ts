@@ -15,6 +15,7 @@ import { ListVehiclesComponent } from './components/list-vehicles/list-vehicles.
 import { ListEnsurancesComponent } from './components/list-ensurances/list-ensurances.component';
 import { ListFinesComponent } from './components/list-fines/list-fines.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
     ListVehiclesComponent,
     ListEnsurancesComponent,
     ListFinesComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpClientModule
