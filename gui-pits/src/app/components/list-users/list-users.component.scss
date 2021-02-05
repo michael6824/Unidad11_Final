@@ -3,15 +3,22 @@
 }
 
 .form-control:disabled,
-.form-control[readonly] {
+.form-control[readonly][id="table"] {
     background-color: transparent;
     opacity: 1;
     border: 0;
     font-size: 13px !important;
     height: 15px;
     width: auto;
+    color: white;
 }
 
-::placeholder {
+.form-control:not([readonly])[id="table"] {
+    background-color: grey;
+    opacity: 1;
+    border: 0;
+    font-size: 13px !important;
+    height: 15px;
+    width: auto;
     color: white;
 }

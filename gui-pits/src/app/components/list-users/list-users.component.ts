@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 export class ListUsersComponent implements OnInit {
   public user: User;
   public findemail: String;
-  public show:boolean = false;
+  public msg: boolean[] = [];
   public buttonName:any = 'Show';
 
 public FoundUser : [];
@@ -22,9 +22,12 @@ public FoundUser : [];
 
   ngOnInit() {
   }
-  onEdit(product: User) {
-    this.UserService.selectedUser = Object.assign({}, product);
-  }
+  onEdit(number) {
+    if (this.msg[number]){
+      this.msg[number] = false;
+    } else{
+    this.msg[number] = true;
+  }}
 
   ShowUser(){
     this.UserService.showuser(this.findemail).subscribe(
@@ -49,4 +52,76 @@ public FoundUser : [];
       }
     )
   }
+
+  UpdateUser(){
+    this.FoundUsers.forEach((uservalue, index) => {
+      
+      if(this.msg[index]){
+        this.msg[index] = false;
+        this.UserService.updateuser(uservalue).subscribe(
+          (res:any) => {
+            if(res.statusCode != 200){
+              alert('No se puedo registrar el usuario');
+            }
+            else{
+              alert('Registro Exitoso');
+            }
+          },
+          (error) => {
+            var errorMensaje = <any>error;
+            if ( errorMensaje != null){
+              console.log(error);
+            }
+          }
+          )
+      }
+      
+  });
+    
+  }
+  RemoveUser(user){
+    
+        this.UserService.removeuser(user._id).subscribe(
+          (res:any) => {
+            if(res.statusCode != 200){
+              alert('No se puedo registrar el usuario');
+            }
+            else{
+              alert('Usuario Borrado');
+              this.ShowUsers()
+            }
+          },
+          (error) => {
+            var errorMensaje = <any>error;
+            if ( errorMensaje != null){
+              console.log(error);
+            }
+          }
+          );
+      
+      
+  
+    
+  }
+
+  RegisterUser(){
+    this.UserService.registraruser(this.user).subscribe(
+    (res:any) => {
+      if(res.statusCode != 200){
+        alert('No se puedo registrar el usuario');
+      }
+      else{
+        alert('Registro Exitoso');
+      }
+    },
+    (error) => {
+      var errorMensaje = <any>error;
+      if ( errorMensaje != null){
+        console.log(error);
+      }
+    }
+    )
+  }
 }
+
+

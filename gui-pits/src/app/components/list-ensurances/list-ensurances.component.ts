@@ -12,4 +12,5 @@ export class ListEnsurancesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }

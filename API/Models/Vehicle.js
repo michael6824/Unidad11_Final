@@ -6,7 +6,7 @@ var VehicleSchema = new Schema({
     cc: Number,
     name: String,
     plate: String,
-    brand: String,
+    brand: String
 });
 
 module.exports = mongoose.model('Vehicle', VehicleSchema);

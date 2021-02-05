@@ -17,6 +17,19 @@ export class UserService {
     return this._http.post(this.apiURL + "user/", params, {headers:options}).pipe((res) => res);
   }
 
+  updateuser(UserParams: User): Observable<any> {
+    let params = JSON.stringify(UserParams);
+    let id = UserParams._id;
+    let options = new HttpHeaders().set('Content-type','application/json');
+    return this._http.put(this.apiURL + "user/" + id , params, {headers:options}).pipe((res) => res);
+  }
+
+  removeuser(id: User["_id"]): Observable<any> {
+    let options = new HttpHeaders().set('Content-type','application/json');
+    console.log(id)
+    return this._http.delete(this.apiURL + "user/" + id , {headers:options}).pipe((res) => res);
+  }
+
   showuser(email: User["email"]): Observable<any> {
     
     let options = {headers: new HttpHeaders({'Content-type':'application/json'})};

@@ -1,3 +1,4 @@
+const { findByIdAndDelete } = require('../Models/Services');
 const Services = require('../Models/Services');
 
 function create(req, res) {
@@ -62,9 +63,9 @@ function update(req, res) {
 }
 
 function remove(req, res) {
-    var platen = req.params.plate;
+    var platen = req.params.id;
 
-    Services.findOneAndDelete({ plate: { $regex: platen } }, (error, ServicesRemoved) => {
+    Services.findByIdAndDelete({ platen }, (error, ServicesRemoved) => {
         if (error) {
             res.status(500).send({
                 statusCode: 400,
