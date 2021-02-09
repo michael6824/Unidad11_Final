@@ -1,34 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import {vehicle} from '../../models/vehicle';
 import {VehicleService} from '../../services/vehicle.services';
-import {User} from '../../models/user';
-import {UserService} from '../../services/user.service';
-import {fine} from '../../models/fines';
-import {FineService} from '../../services/fines.services';
+import {ensurance} from '../../models/ensurances';
+import {EnsuranceService} from '../../services/ensurances.services';
 
 @Component({
-  selector: 'app-list-fines',
-  templateUrl: './list-fines.component.html',
-  styleUrls: ['./list-fines.component.scss']
+  selector: 'app-myensurances',
+  templateUrl: './myensurances.component.html',
+  styleUrls: ['./myensurances.component.scss']
 })
-export class ListFinesComponent implements OnInit {
-
-  public tipo: false;
-  public user: User;
-  public vehicle: vehicle;
-  public findcc: number;
-  public findplate: String;
+export class MyensurancesComponent implements OnInit {
+  public user: vehicle;
+  public ensurance: ensurance;
+  public findemail: String;
   public msg: boolean[] = [];
   public buttonName:any = 'Show';
-public fine: fine;
-public FoundVehicle : [];
+
+public FoundEnsurance : [];
+  public FoundEnsurances : any = [];
   public FoundVehicles : any = [];
-  public FoundUsers : any = [];
-  public FoundFines : any = [];
-  constructor(private VehicleService: VehicleService, private UserService: UserService, private FineService: FineService) { 
-    this.vehicle = new vehicle("",0,"","","");
-    this.user = new User("","","",0,"","","");
-    this.fine = new fine("",true,0,"","",0,"");
+  constructor(private EnsuranceService: EnsuranceService, private VehicleService: VehicleService) { 
+    this.ensurance = new ensurance("","",false,false,"",0,"");
+    this.user = new vehicle("",0,"","","");
   }
 
   ngOnInit() {
@@ -40,39 +33,39 @@ public FoundVehicle : [];
     this.msg[number] = true;
   }}
 
-  ShowFine(){
-    this.FineService.showfine(this.findplate,this.findcc,this.tipo).subscribe(
+  ShowEnsurance(){
+    console.log(this.findemail)
+    this.EnsuranceService.showensurance(this.findemail).subscribe(
       (res:any) => {
-        console.log(res)
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
-          this.FoundFines = res.foundvehicle;
+          this.FoundEnsurances = res.foundensurance;
         }
       }
     )
   }
 
-  ShowFines(){
-    this.FineService.showfines().subscribe(
+  ShowEnsurances(){
+    this.EnsuranceService.showensurances().subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
          
-          this.FoundFines = res.allfines;
+          this.FoundEnsurances = res.allVehicles;
         }
       }
     )
   }
 
-  UpdateFine(){
-    this.FoundFines.forEach((finevalue, index) => {
+  UpdateEnsurance(){
+    this.FoundEnsurances.forEach((ensurancevalue, index) => {
       
       if(this.msg[index]){
         this.msg[index] = false;
-        console.log(finevalue)
-        this.FineService.updatefine(finevalue).subscribe(
+        console.log(ensurancevalue)
+        this.EnsuranceService.updateensurance(ensurancevalue).subscribe(
           (res:any) => {
             if(res.statusCode != 200){
               alert('No se puedo registrar el usuario');
@@ -93,16 +86,16 @@ public FoundVehicle : [];
   });
     
   }
-  RemoveFine(fine){
+  RemoveEnsurance(ensurance){
     
-        this.FineService.removefine(fine._id).subscribe(
+        this.EnsuranceService.removeensurance(ensurance.plate).subscribe(
           (res:any) => {
             if(res.statusCode != 200){
-              alert('No se puedo borrar la multa');
+              alert('No se puedo registrar el usuario');
             }
             else{
-              alert('Multa Borrada');
-              this.ShowFines()
+              alert('Usuario Borrado');
+              this.ShowEnsurances()
             }
           },
           (error) => {
@@ -118,13 +111,8 @@ public FoundVehicle : [];
     
   }
 
-  RegisterFine(){
-   if(this.fine.type){
-     this.fine.cc=null;
-   } else{
-     this.fine.plate="";
-   }
-    this.FineService.registrarfine(this.fine).subscribe(
+  RegisterEnsurance(){
+    this.EnsuranceService.registrarensurance(this.ensurance).subscribe(
     (res:any) => {
       if(res.statusCode != 200){
         alert('No se puedo registrar el usuario');
@@ -140,31 +128,16 @@ public FoundVehicle : [];
       }
     }
     )
-
-    this.fine.cc = null;
-    this.fine.plate = "";
-
   }
+
   ShowVehicles(){
+    console.log("hi")
     this.VehicleService.showvehicles().subscribe(
-      (res:any) => {
-        if(res.statusCode != 200) {
-          alert('No se encontró el usuario')
-        } else{
-         
-          this.FoundVehicles = res.allUsers;
-        }
-      }
-    )
-  }
-  ShowUsers(){
-    this.ShowVehicles();
-    this.UserService.showusers().subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
           alert('No se encontró el usuario');
         } else{
-          this.FoundUsers = res.allUsers;
+          this.FoundVehicles = res.allVehicles;
         }
       }
     )

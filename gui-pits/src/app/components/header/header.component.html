@@ -18,23 +18,28 @@
                 <a class="nav-link" [routerLink]="['./admin']">admin</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Mi Cuenta</a>
+                <a class="nav-link" [class.disabled]="!correct" [routerLink]="['./myaccount']">Mi Cuenta</a>
             </li>
         </ul>
     </div>
     <div class="d-flex flex-column text-center">
-        <img src="../../../assets/images/login.png" class="rounded-circle responsive2">
-        <a class="nav-link texto" data-toggle="modal" data-target="#registro">Login<span class="sr-only"></span></a>
+        <div *ngIf="!correct">
+            <img src="../../../assets/images/login.png" class="rounded-circle responsive2">
+            <a class="nav-link texto" data-toggle="modal" data-target="#login">Login<span class="sr-only"></span></a>
+        </div>
+        <div *ngIf="correct">
+            <img src="../../../assets/images/user1.JPG" class="rounded-circle responsive2">
+            <a class="nav-link texto" (click)="closes()">Cerrar Sesión<span class="sr-only"></span></a>
+        </div>
 
     </div>
 </nav>
 
 
 
-
 <div class="container">
     <!-- The Modal -->
-    <div class="modal fade" id="myModal">
+    <div class="modal fade" id="login">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
@@ -54,19 +59,18 @@
                         </div>
                         <div class="form-group ">
                             <label for="exampleInputPassword1 ">Contraseña</label>
-                            <input type="password " name="pass" class="form-control " id="exampleInputPassword1 " placeholder="Password " #find_email="ngModel" [(ngModel)]="user.pass">
+                            <input type="password " name="pass" class="form-control " id="exampleInputPassword1 " placeholder="Password " #find_email="ngModel" [(ngModel)]="pass">
                         </div>
-                        <div class="form-check ">
-                            <input type="checkbox " class="form-check-input " id="exampleCheck1 ">
-                            <label class="form-check-label " for="exampleCheck1 ">Recuerdame</label>
+                        <div class="row btn-group btn-group-justified d-flex">
+                            <div class="col-6">
+                                <button class="btn btn-primary ml-5 " data-toggle="modal" data-target="#registro">Registrarse</button>
+                            </div>
+                            <div class="col-6">
+                                <form #listUser="ngForm" (ngSubmit)="ShowUser()">
+                                    <button type="submit " class="btn btn-primary float-end ">Iniciar Sesión</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="btn-group btn-group-justified ">
-                            <button type="submit " class="btn btn-primary ml-5 " data-toggle="modal " data-target="#registro ">Registrarse</button>
-                            <button type="submit " class="btn btn-primary float-end ">Iniciar Sesión</button>
-                        </div>
-                        <tr *ngFor="let user of FoundUser ">
-                            {{user.email}}
-                        </tr>
 
                     </form>
                 </div>
@@ -94,32 +98,56 @@
                     <div class="container">
                         <h1 class="text-center mt-5"> Registrar Usuario</h1>
                         <div class="row d-flex justify-content-center mt-5">
-                            <div class="col-4">
+                            <div class="col-10">
 
                                 <form #registrarEstudianteForm="ngForm" (ngSubmit)="RegisterUser()">
-                                    <div class="form-group">
-                                        <label for="name">Nombre</label>
-                                        <input type="text" class="form-control" id="name" name="fistName" #firstName="ngModel" [(ngModel)]="user.name">
+                                    <div class="row form-group">
+                                        <div class="col-6">
+                                            <label for="name">Nombre</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" id="name" name="fistName" #firstName="ngModel" [(ngModel)]="user.name">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="lastName">Apellido</label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName" #firstName="ngModel" [(ngModel)]="user.lastname">
+                                    <div class="row form-group">
+                                        <div class="col-6">
+                                            <label for="lastName">Apellido</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" id="lastName" name="lastName" #firstName="ngModel" [(ngModel)]="user.lastname">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="Email">Email</label>
-                                        <input type="text" class="form-control" id="Email" name="Email" #firstName="ngModel" [(ngModel)]="user.email">
+                                    <div class="row form-group">
+                                        <div class="col-6">
+                                            <label for="Email">Email</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" id="Email" name="Email" #firstName="ngModel" [(ngModel)]="user.email">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="cc">Cc</label>
-                                        <input type="number" class="form-control" id="age" name="age" #firstName="ngModel" [(ngModel)]="user.cc">
+                                    <div class="row form-group">
+                                        <div class="col-6">
+                                            <label for="cc">Cc</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" class="form-control" id="cc" name="cc" #firstName="ngModel" [(ngModel)]="user.cc" value="">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="date">date</label>
-                                        <input type="date" class="form-control" id="date" name="date" #firstName="ngModel" [(ngModel)]="user.date">
+                                    <div class="row form-group">
+                                        <div class="col-6">
+                                            <label for="date">date</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="date" class="form-control" id="date" name="date" #firstName="ngModel" [(ngModel)]="user.date">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="pass">Password</label>
-                                        <input type="text" class="form-control" id="Pass" name="Pass" #firstName="ngModel" [(ngModel)]="user.pass">
+                                    <div class="row form-group">
+                                        <div class="col-6">
+                                            <label for="pass">Password</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="password" class="form-control" id="Pass" name="Pass" #firstName="ngModel" [(ngModel)]="user.pass">
+                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Registrar</button>
                                 </form>

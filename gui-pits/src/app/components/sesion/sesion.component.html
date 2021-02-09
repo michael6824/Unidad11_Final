@@ -1,17 +1,69 @@
 <div class="d-row d-inline-flex w-100" style="background-color: white;">
     <div class="col-lg-6 col-sm-12 text-justify m-5">
+        <div class="row form-group">
+            <div class="col-6">
+                <label for="name"><b>Nombre</b></label>
+            </div>
+            <div class="col-6">
+                {{user_storage.name}}
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-6">
+                <label for="name"><b>Apellido</b></label>
+            </div>
+            <div class="col-6">
+                {{user_storage.lastname}}
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-6">
+                <label for="name"><b>Cc</b></label>
+            </div>
+            <div class="col-6">
+                {{user_storage.cc}}
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-6">
+                <label for="name"><b>Correo</b></label>
+            </div>
+            <div class="col-6">
+                {{user_storage.email}}
+            </div>
+        </div>
 
-        <b>Nombre:</b>
-        <br>
-        <br><b> Apellido:</b>
-        <br>
-        <br><b> Cédula:</b>
-        <br>
-        <br><b> Correo:</b>
 
     </div>
     <div class="col-lg-6 col-sm-12 m-5 text-center">
         <img src="assets/images/user1.JPG" class="float-start rounded">
+        <button type="submit" class="btn btn-dark">Editar</button>
 
     </div>
 </div>
+
+<hr class="w-75">
+<div class="row text-center mt-2">
+    <div class="col-4">
+        <img src="../../../assets/images/Seguroicon.png" class="float-start imgr">
+    </div>
+    <div class="col-4">
+        <img src="../../../assets/images/Vehiculo_icon.png" class="float-start imgr">
+    </div>
+    <div class="col-4">
+        <img src="../../../assets/images/multas_icon.png" class="float-start imgr">
+    </div>
+</div>
+<div class="row text-center mb-5">
+    <div class="col-4">
+        <button type="button" class="btn btn-dark" [routerLink]="['./myensurances']">Mis Seguros</button>
+    </div>
+    <div class="col-4">
+        <button type="button" class="btn btn-dark" [routerLink]="['./myvehicles']">Mis Vehiculos</button>
+    </div>
+    <div class="col-4">
+        <button type="button" class="btn btn-dark" [routerLink]="['./myfines']">Mis Multas</button>
+    </div>
+</div>
+
+<br>

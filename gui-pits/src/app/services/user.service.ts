@@ -36,6 +36,13 @@ export class UserService {
     return this._http.get(this.apiURL + "user/"+email, options).pipe((res) => res);
   }
 
+  checkpass(email: User["email"], pass: User["pass"]): Observable<any> {
+    
+    let options = {headers: new HttpHeaders({'Content-type':'application/json'})};
+    return this._http.get(this.apiURL + "usercheck/"+email+","+pass, options).pipe((res) => res);
+  }
+
+
   showusers(): Observable<any> {
     
     let options = {headers: new HttpHeaders({'Content-type':'application/json'})};

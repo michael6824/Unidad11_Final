@@ -16,6 +16,11 @@ import { ListEnsurancesComponent } from './components/list-ensurances/list-ensur
 import { ListFinesComponent } from './components/list-fines/list-fines.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { MyensurancesComponent } from './components/myensurances/myensurances.component';
+import { MyvehiclesComponent } from './components/myvehicles/myvehicles.component';
+import { MyfinesComponent } from './components/myfines/myfines.component';
+import { RecordsComponent } from './components/records/records.component';
+import { WorkshopsComponent } from './components/workshops/workshops.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
     ListEnsurancesComponent,
     ListFinesComponent,
     UpdateUserComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    MyensurancesComponent,
+    MyvehiclesComponent,
+    MyfinesComponent,
+    RecordsComponent,
+    WorkshopsComponent
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpClientModule

@@ -19,21 +19,20 @@ export class FineService {
 
   updatefine(FineParams: fine): Observable<any> {
     let params = JSON.stringify(FineParams);
-    let id = FineParams.plate;
+    let id = FineParams._id;
     let options = new HttpHeaders().set('Content-type','application/json');
     return this._http.put(this.apiURL + "fine/" + id , params, {headers:options}).pipe((res) => res);
   }
 
   removefine(id: fine["_id"]): Observable<any> {
     let options = new HttpHeaders().set('Content-type','application/json');
-    console.log(id)
     return this._http.delete(this.apiURL + "fine/" + id , {headers:options}).pipe((res) => res);
   }
 
-  showfine(email: fine["cc"]): Observable<any> {
+  showfine(plate: fine["plate"],cc: fine["cc"], tipo: fine["type"]): Observable<any> {
     
     let options = {headers: new HttpHeaders({'Content-type':'application/json'})};
-    return this._http.get(this.apiURL + "fine/"+email, options).pipe((res) => res);
+    return this._http.get(this.apiURL + "fine/"+plate+","+cc+","+tipo, options).pipe((res) => res);
   }
 
   showfines(): Observable<any> {

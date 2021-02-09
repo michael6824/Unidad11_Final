@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,13 +12,20 @@ export class HeaderComponent implements OnInit {
 public user: User;
 public findemail: String;
 public FoundUser : [];
+public correct: false;
+public pass: String;
+public save_user: User;
 
   constructor(private UserService: UserService) { 
     this.user = new User("","","",0,"","","");
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
+  closes(){
+    this.correct = false;
+  }
   RegisterUser(){
     this.UserService.registraruser(this.user).subscribe(
     (res:any) => {
@@ -36,14 +45,20 @@ public FoundUser : [];
     )
   }
 
-
+SaveUser(){
+  const userString = JSON.stringify(this.save_user);
+  localStorage.setItem('user',userString);
+}
   ShowUser(){
-    this.UserService.showuser(this.findemail).subscribe(
+    this.UserService.checkpass(this.findemail, this.pass).subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
-          this.FoundUser = res.allUsers;
+          
+          this.correct = res.correct;
+          this.save_user = res.user;
+          this.SaveUser();
         }
       }
     )

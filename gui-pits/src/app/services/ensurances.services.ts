@@ -26,19 +26,18 @@ export class EnsuranceService {
 
   removeensurance(id: ensurance["_id"]): Observable<any> {
     let options = new HttpHeaders().set('Content-type','application/json');
-    console.log(id)
     return this._http.delete(this.apiURL + "ensurance/" + id , {headers:options}).pipe((res) => res);
   }
 
-  showensurance(email: ensurance["cc"]): Observable<any> {
+  showensurance(plate: ensurance["plate"]): Observable<any> {
     
     let options = {headers: new HttpHeaders({'Content-type':'application/json'})};
-    return this._http.get(this.apiURL + "ensurance/"+email, options).pipe((res) => res);
+    return this._http.get(this.apiURL + "ensurance/"+plate, options).pipe((res) => res);
   }
 
   showensurances(): Observable<any> {
     
     let options = {headers: new HttpHeaders({'Content-type':'application/json'})};
-    return this._http.get(this.apiURL + "allensurances", options).pipe((res) => res);
+    return this._http.get(this.apiURL + "allEnsurances", options).pipe((res) => res);
   }
 }
