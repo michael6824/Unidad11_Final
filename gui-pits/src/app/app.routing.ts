@@ -8,6 +8,8 @@ import {UpdateUserComponent} from './components/update-user/update-user.componen
 import {AdminHomeComponent} from './components/admin-home/admin-home.component'
 import {ListVehiclesComponent} from './components/list-vehicles/list-vehicles.component'
 import {ListEnsurancesComponent} from './components/list-ensurances/list-ensurances.component'
+import {RecordsComponent} from './components/records/records.component'
+import {WorkshopsComponent} from './components/workshops/workshops.component'
 import {SesionComponent} from './components/sesion/sesion.component'
 import {MyensurancesComponent} from './components/myensurances/myensurances.component'
 import {MyfinesComponent} from './components/myfines/myfines.component'
@@ -24,6 +26,8 @@ const appRoutes: Routes = [
     {path: 'admin/ensurances', component: ListEnsurancesComponent},
     {path: 'admin/vehicles', component: ListVehiclesComponent},
     {path: 'admin/fines', component: ListFinesComponent},
+    {path: 'admin/records', component: RecordsComponent},
+    {path: 'admin/workshops', component: WorkshopsComponent},
     {path: 'admin/update', component: UpdateUserComponent},
     {path: 'myaccount', component: SesionComponent},
     {path: 'myaccount/myensurances', component: MyensurancesComponent},

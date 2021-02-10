@@ -7,7 +7,7 @@ var FineSchema = new Schema({
     plate: String,
     description: String,
     value: Number,
-    date: Date
+    date: String
 });
 
 module.exports = mongoose.model('Fine', FineSchema);

@@ -10,9 +10,9 @@ import {EnsuranceService} from '../../services/ensurances.services';
   styleUrls: ['./myensurances.component.scss']
 })
 export class MyensurancesComponent implements OnInit {
-  public user: vehicle;
+  public vehicle: vehicle;
   public ensurance: ensurance;
-  public findemail: String;
+  public findplate: String;
   public msg: boolean[] = [];
   public buttonName:any = 'Show';
 
@@ -21,7 +21,7 @@ public FoundEnsurance : [];
   public FoundVehicles : any = [];
   constructor(private EnsuranceService: EnsuranceService, private VehicleService: VehicleService) { 
     this.ensurance = new ensurance("","",false,false,"",0,"");
-    this.user = new vehicle("",0,"","","");
+    this.vehicle = new vehicle("",0,"","","");
   }
 
   ngOnInit() {
@@ -34,13 +34,13 @@ public FoundEnsurance : [];
   }}
 
   ShowEnsurance(){
-    console.log(this.findemail)
-    this.EnsuranceService.showensurance(this.findemail).subscribe(
+    console.log(this.findplate)
+    this.EnsuranceService.showensurance(this.findplate).subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
-          this.FoundEnsurances = res.foundensurance;
+          this.FoundEnsurances = res.allSures;
         }
       }
     )
@@ -53,7 +53,7 @@ public FoundEnsurance : [];
           alert('No se encontró el usuario')
         } else{
          
-          this.FoundEnsurances = res.allVehicles;
+          this.FoundEnsurances = res.allSures;
         }
       }
     )
@@ -87,8 +87,7 @@ public FoundEnsurance : [];
     
   }
   RemoveEnsurance(ensurance){
-    
-        this.EnsuranceService.removeensurance(ensurance.plate).subscribe(
+        this.EnsuranceService.removeensurance(ensurance._id).subscribe(
           (res:any) => {
             if(res.statusCode != 200){
               alert('No se puedo registrar el usuario');
@@ -137,7 +136,7 @@ public FoundEnsurance : [];
         if(res.statusCode != 200) {
           alert('No se encontró el usuario');
         } else{
-          this.FoundVehicles = res.allVehicles;
+          this.FoundVehicles = res.allUsers;
         }
       }
     )

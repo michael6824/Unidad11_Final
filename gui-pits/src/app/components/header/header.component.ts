@@ -15,17 +15,24 @@ public FoundUser : [];
 public correct: false;
 public pass: String;
 public save_user: User;
+public user_storage: any;
 
   constructor(private UserService: UserService) { 
     this.user = new User("","","",0,"","","");
   }
 
   ngOnInit(): void {
+    //localStorage.removeItem("user");
+    this.correct = JSON.parse(localStorage.getItem('correct'));
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   closes(){
     this.correct = false;
+    localStorage.removeItem("user");
+    localStorage.removeItem("correct");
   }
+
   RegisterUser(){
     this.UserService.registraruser(this.user).subscribe(
     (res:any) => {
@@ -47,7 +54,9 @@ public save_user: User;
 
 SaveUser(){
   const userString = JSON.stringify(this.save_user);
+  const correctString = JSON.stringify(this.correct);
   localStorage.setItem('user',userString);
+  localStorage.setItem('correct',correctString);
 }
   ShowUser(){
     this.UserService.checkpass(this.findemail, this.pass).subscribe(

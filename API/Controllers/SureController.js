@@ -59,9 +59,9 @@ function update(req, res) {
 }
 
 function remove(req, res) {
-    var platen = req.params.plate;
-
-    Sure.findOneAndDelete({ plate: { $regex: platen } }, (error, sureRemoved) => {
+    var platen = req.params.id;
+    console.log(req)
+    Sure.findByIdAndDelete(platen, (error, sureRemoved) => {
         if (error) {
             res.status(500).send({
                 statusCode: 400,
@@ -92,9 +92,29 @@ function getAllsures(req, res) {
         }
     })
 }
+
+function getensurance(req, res) {
+    var plate1 = req.params.plate;
+    Sure.find({ plate: { $regex: plate1 } }, (error, foundvehicle) => {
+        console.log(foundvehicle)
+        if (error) {
+            res.status(500).send({
+                statusCode: 500,
+                message: "Error en el Servidor"
+            })
+        } else {
+            res.status(200).send({
+                statusCode: 200,
+                message: "Vehiculo correcto",
+                allSures: foundvehicle
+            })
+        }
+    })
+}
 module.exports = {
     create,
     update,
     remove,
-    getAllsures
+    getAllsures,
+    getensurance
 }

@@ -91,9 +91,47 @@ function getAllvehicles(req, res) {
         }
     })
 }
+
+function getVehicle(req, res) {
+    var plate1 = req.params.plate;
+    Vehicle.find({ plate: { $regex: plate1 } }, (error, foundvehicle) => {
+        if (error) {
+            res.status(500).send({
+                statusCode: 500,
+                message: "Error en el Servidor"
+            })
+        } else {
+            res.status(200).send({
+                statusCode: 200,
+                message: "Vehiculo correcto",
+                foundvehicle: foundvehicle
+            })
+        }
+    })
+}
+
+function getVehiclebyuser(req, res) {
+    var plate1 = req.params.cc;
+    Vehicle.find({ cc: { $regex: plate1 } }, (error, foundvehicle) => {
+        if (error) {
+            res.status(500).send({
+                statusCode: 500,
+                message: "Error en el Servidor"
+            })
+        } else {
+            res.status(200).send({
+                statusCode: 200,
+                message: "Vehiculo correcto",
+                foundvehicle: foundvehicle
+            })
+        }
+    })
+}
 module.exports = {
     create,
     update,
     remove,
-    getAllvehicles
+    getAllvehicles,
+    getVehicle,
+    getVehiclebyuser
 }

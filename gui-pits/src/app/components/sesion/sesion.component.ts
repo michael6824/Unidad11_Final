@@ -21,8 +21,8 @@ export class SesionComponent implements OnInit {
 
   retrive_data(){
    
-this.user_storage = JSON.parse(localStorage.getItem('user'));
-console.log(this.user_storage)
+this.user = JSON.parse(localStorage.getItem('user'))[0];
+console.log(this.user)
   }
   
 }

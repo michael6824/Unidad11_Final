@@ -113,11 +113,44 @@ function getUser(req, res) {
     })
 }
 
+function checkpass(req, res) {
+    var email1 = req.params.email;
+    var pass1 = req.params.pass;
+    User.find({ email: { $regex: email1 }, pass: { $regex: pass1 } }, (error, allUsers) => {
+        if (error) {
+            res.status(500).send({
+                statusCode: 500,
+                message: "Error en el Servidor"
+            })
+        } else {
+
+            if (allUsers.length > 0) {
+                res.status(200).send({
+                    statusCode: 200,
+                    message: "Usuario ok",
+                    correct: true,
+                    user: allUsers
+                })
+            } else {
+                res.status(200).send({
+                    statusCode: 400,
+                    message: "Usuario nok",
+                    correct: false
+                })
+            }
+
+
+
+
+        }
+    })
+}
 
 module.exports = {
     create,
     update,
     remove,
     getAllUsers,
-    getUser
+    getUser,
+    checkpass
 }

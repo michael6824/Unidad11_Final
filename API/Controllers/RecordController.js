@@ -36,8 +36,8 @@ function create(req, res) {
 
 function update(req, res) {
     var parameters = req.body;
-    var platen = req.params.plate;
-    Record.findOneAndUpdate({ plate: { $regex: platen } }, parameters, (error, recordUpdated) => {
+    var id = req.params.id;
+    Record.findByIdAndUpdate(id, parameters, (error, recordUpdated) => {
         if (error) {
             res.status(500).send({
                 statusCode: 500,
@@ -60,9 +60,9 @@ function update(req, res) {
 }
 
 function remove(req, res) {
-    var platen = req.params.plate;
+    var id = req.params.id;
 
-    Record.findOneAndDelete({ plate: { $regex: platen } }, (error, recordRemoved) => {
+    Record.findByIdAndDelete(id, (error, recordRemoved) => {
         if (error) {
             res.status(500).send({
                 statusCode: 400,
@@ -88,7 +88,26 @@ function getAllrecords(req, res) {
             res.status(200).send({
                 statusCode: 200,
                 message: "Todos los vehiculos",
-                allUsers: allrecords
+                allrecords: allrecords
+            })
+        }
+    })
+}
+
+function getrecord(req, res) {
+    var plate1 = req.params.plate;
+    Record.find({ plate: { $regex: plate1 } }, (error, allrecords) => {
+
+        if (error) {
+            res.status(500).send({
+                statusCode: 500,
+                message: "Error en el Servidor"
+            })
+        } else {
+            res.status(200).send({
+                statusCode: 200,
+                message: "Vehiculo correcto",
+                allrecords: allrecords
             })
         }
     })
@@ -97,5 +116,6 @@ module.exports = {
     create,
     update,
     remove,
-    getAllrecords
+    getAllrecords,
+    getrecord
 }
