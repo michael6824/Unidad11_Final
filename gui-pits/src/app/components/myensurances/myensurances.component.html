@@ -1,25 +1,45 @@
 <div class="container">
-    <div class="row d-flex justify-content-center mt-3">
-        <div class="col-6">
-            <form #listVehicle="ngForm" (ngSubmit)="ShowEnsurance()">
-                <div class="row form-group d-flex">
-                    <div class="col-4 align-self-center">
-                        <label for="listbyemail"> Buscar por Placa:</label>
-                    </div>
-                    <div class="col-7">
-                        <input type="email " name="email" class="form-control" id="exampleInputEmail1 " aria-describedby="emailHelp " placeholder="Digite la Placa " #find_email="ngModel" [(ngModel)]="findplate">
-                    </div>
-                    <div class="col-1">
-                        <button type="submit" class="btn btn-dark"><i class=" bi bi-search "></i></button>
-                    </div>
+    <div class="d-row d-inline-flex w-100" style="background-color: white;">
+        <div class="col-lg-6 col-sm-12 text-justify m-5">
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="name"><b>Nombre</b></label>
                 </div>
-            </form>
+                <div class="col-6">
+                    {{user.name}}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="name"><b>Apellido</b></label>
+                </div>
+                <div class="col-6">
+                    {{user.lastname}}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="name"><b>Cc</b></label>
+                </div>
+                <div class="col-6">
+                    {{user.cc}}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="name"><b>Correo</b></label>
+                </div>
+                <div class="col-6">
+                    {{user.email}}
+                </div>
+            </div>
+
 
         </div>
-        <div class="col-2">
-            <form #listVehicle="ngForm" (ngSubmit)="ShowEnsurances()">
-                <button type="submit" class="btn btn-dark">Buscar Todos</button>
-            </form>
+        <div class="col-lg-6 col-sm-12 m-5 text-center">
+            <img src="assets/images/user1.JPG" class="float-start rounded">
+            <button type="submit" class="btn btn-dark">Editar</button>
+
         </div>
     </div>
     <div class="row mt-3">
@@ -36,7 +56,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let ensurance of FoundEnsurances; index as ind">
+                    <tr *ngFor="let ensurance of FoundEnsurancesfull; index as ind">
                         <td><input type="text " name="cc" class="form-control text-center" #name="ngModel" [(ngModel)]="ensurance.plate" [readonly]="true" id="table">
                         </td>
                         <td><input type="text" name="name" class="form-control text-center" #tipo="ngModel" [(ngModel)]="ensurance.type" [readonly]="!msg[ind]" id="table">
@@ -60,7 +80,7 @@
             <button type="submit" class="btn btn-dark">Actualizar</button>
         </form>
         <form #registrarEstudianteForm="ngForm">
-            <button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#registrov" (click)="ShowVehicles()">Registrar</button>
+            <button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#registrov" (click)="ShowVehiclebyuser()">Registrar</button>
         </form>
     </div>
 

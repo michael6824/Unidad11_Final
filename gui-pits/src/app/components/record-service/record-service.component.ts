@@ -1,90 +1,75 @@
 import { Component, OnInit } from '@angular/core';
 import {vehicle} from '../../models/vehicle';
 import {VehicleService} from '../../services/vehicle.services';
-import {ensurance} from '../../models/ensurances';
-import {EnsuranceService} from '../../services/ensurances.services';
 import {User} from '../../models/user';
-
+import {UserService} from '../../services/user.service';
+import {Record} from '../../models/records';
+import {RecordService} from '../../services/records.service';
 @Component({
-  selector: 'app-myensurances',
-  templateUrl: './myensurances.component.html',
-  styleUrls: ['./myensurances.component.scss']
+  selector: 'app-record-service',
+  templateUrl: './record-service.component.html',
+  styleUrls: ['./record-service.component.scss']
 })
-export class MyensurancesComponent implements OnInit {
+export class RecordServiceComponent implements OnInit {
   public vehicle: vehicle;
   public user: User;
-  public ensurance: ensurance;
-  public findplate: String;
+  public record: Record;
+public findplate: String;
   public msg: boolean[] = [];
   public buttonName:any = 'Show';
-  public findcc: Number;
 
-
-
-public FoundEnsurance : [];
-  public FoundEnsurances : any = [];
-  public FoundEnsurancesfull : any = [];
+public FoundRecord : [];
+  public FoundRecords : any = [];
   public FoundVehicles : any = [];
-  constructor(private EnsuranceService: EnsuranceService, private VehicleService: VehicleService) { 
-    this.ensurance = new ensurance("","",false,false,"",0,"");
-    this.vehicle = new vehicle("",0,"","","");
+  public FoundUsers : any = [];
+  constructor(private RecordService : RecordService, private VehicleService: VehicleService, private UserService: UserService) { 
     this.user = new User("","","",0,"","","");
+    this.vehicle = new vehicle("",0,"","","");
+    this.record = new Record("","",0,"","")
   }
 
   ngOnInit() {
-this.retrive_data();
-    this.ShowEnsurance();
   }
-  onEdit() {
-    this.FoundVehicles.forEach((finevalue, index) => {
-      this.findplate = finevalue.plate;
-      
-      this.ShowEnsurance();
-     
-    })
-  }
+  onEdit(number) {
+    if (this.msg[number]){
+      this.msg[number] = false;
+    } else{
+    this.msg[number] = true;
+  }}
 
-  retrive_data(){
-    this.user = JSON.parse(localStorage.getItem('user'))[0];
-    this.findcc = this.user.cc;
-    this.ShowVehiclebyuser();
-}
-
-  ShowEnsurance(){
-    
-    this.EnsuranceService.showensurance(this.findplate).subscribe(
+  ShowRecord(){
+    console.log(this.findplate)
+    this.RecordService.showrecord(this.findplate).subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
-          this.FoundEnsurances = res.allSures;
-          this.FoundEnsurancesfull = this.FoundEnsurancesfull.concat(this.FoundEnsurances)
-         
+          this.FoundRecords = res.allrecords;
         }
       }
     )
   }
 
-  ShowEnsurances(){
-    this.EnsuranceService.showensurances().subscribe(
+  ShowRecords(){
+    this.RecordService.showrecords().subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
          
-          this.FoundEnsurances = res.allSures;
+          this.FoundRecords = res.allrecords;
         }
       }
     )
   }
 
-  UpdateEnsurance(){
-    this.FoundEnsurances.forEach((ensurancevalue, index) => {
+  UpdateRecord(){
+    this.FoundRecords.forEach((recordvalue, index) => {
       
       if(this.msg[index]){
         this.msg[index] = false;
-       
-        this.EnsuranceService.updateensurance(ensurancevalue).subscribe(
+        console.log(recordvalue)
+        this.RecordService.updaterecord(recordvalue).subscribe(
           (res:any) => {
             if(res.statusCode != 200){
               alert('No se puedo registrar el usuario');
@@ -105,15 +90,15 @@ this.retrive_data();
   });
     
   }
-  RemoveEnsurance(ensurance){
-        this.EnsuranceService.removeensurance(ensurance._id).subscribe(
+  RemoveRecord(Record){
+        this.RecordService.removerecord(Record._id).subscribe(
           (res:any) => {
             if(res.statusCode != 200){
               alert('No se puedo registrar el usuario');
             }
             else{
               alert('Usuario Borrado');
-              this.ShowVehiclebyuser();
+              this.ShowRecords()
             }
           },
           (error) => {
@@ -129,15 +114,14 @@ this.retrive_data();
     
   }
 
-  RegisterEnsurance(){
-    this.EnsuranceService.registrarensurance(this.ensurance).subscribe(
+  RegisterRecord(){
+    this.RecordService.registrarrecord(this.record).subscribe(
     (res:any) => {
       if(res.statusCode != 200){
         alert('No se puedo registrar el usuario');
       }
       else{
         alert('Registro Exitoso');
-        this.ShowVehiclebyuser();
       }
     },
     (error) => {
@@ -150,7 +134,7 @@ this.retrive_data();
   }
 
   ShowVehicles(){
-    
+    this.ShowUsers();
     this.VehicleService.showvehicles().subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
@@ -160,17 +144,16 @@ this.retrive_data();
         }
       }
     )
-  }
-  ShowVehiclebyuser(){
     
-    this.VehicleService.showvehiclebyuser(this.user.cc).subscribe(
+  }
+  ShowUsers(){
+    
+    this.UserService.showusers().subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
-          alert('No se encontró el usuario')
+          alert('No se encontró el usuario');
         } else{
-          this.FoundVehicles = res.foundvehicle;
-          this.FoundEnsurancesfull = [];
-          this.onEdit();
+          this.FoundUsers = res.allUsers;
         }
       }
     )

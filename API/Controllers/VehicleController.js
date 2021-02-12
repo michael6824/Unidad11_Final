@@ -112,7 +112,7 @@ function getVehicle(req, res) {
 
 function getVehiclebyuser(req, res) {
     var plate1 = req.params.cc;
-    Vehicle.find({ cc: { $regex: plate1 } }, (error, foundvehicle) => {
+    Vehicle.find({ cc: plate1 }, (error, foundvehicle) => {
         if (error) {
             res.status(500).send({
                 statusCode: 500,

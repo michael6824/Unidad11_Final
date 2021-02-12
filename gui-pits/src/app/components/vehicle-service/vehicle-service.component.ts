@@ -4,13 +4,12 @@ import {VehicleService} from '../../services/vehicle.services';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
 
-
 @Component({
-  selector: 'app-myvehicles',
-  templateUrl: './myvehicles.component.html',
-  styleUrls: ['./myvehicles.component.scss']
+  selector: 'app-vehicle-service',
+  templateUrl: './vehicle-service.component.html',
+  styleUrls: ['./vehicle-service.component.scss']
 })
-export class MyvehiclesComponent implements OnInit {
+export class VehicleServiceComponent implements OnInit {
   public user: User;
   public vehicle: vehicle;
   public findemail: number;
@@ -26,7 +25,6 @@ public FoundVehicle : [];
   }
 
   ngOnInit() {
-    this.retrive_data();
   }
   onEdit(number) {
     if (this.msg[number]){
@@ -35,12 +33,6 @@ public FoundVehicle : [];
     this.msg[number] = true;
   }}
 
-  retrive_data(){
-    
-    this.user = JSON.parse(localStorage.getItem('user'))[0];
-    this.ShowVehiclebyuser()
-    
-      }
   ShowVehicle(){
     console.log(this.findemail)
     this.VehicleService.showvehicle(this.findemail).subscribe(
@@ -62,20 +54,6 @@ public FoundVehicle : [];
         } else{
          
           this.FoundVehicles = res.allUsers;
-        }
-      }
-    )
-  }
-
-  ShowVehiclebyuser(){
-    this.VehicleService.showvehiclebyuser(this.user.cc).subscribe(
-      (res:any) => {
-        if(res.statusCode != 200) {
-          alert('No se encontró el usuario')
-        } else{
-         
-          this.FoundVehicles = res.foundvehicle;
-          console.log(this.FoundVehicles)
         }
       }
     )
@@ -106,7 +84,7 @@ public FoundVehicle : [];
       }
       
   });
-  this.ShowVehiclebyuser();
+    
   }
   RemoveVehicle(vehicle){
     
@@ -117,7 +95,7 @@ public FoundVehicle : [];
             }
             else{
               alert('Usuario Borrado');
-              this.ShowVehiclebyuser();
+              this.ShowVehicles()
             }
           },
           (error) => {
@@ -134,7 +112,6 @@ public FoundVehicle : [];
   }
 
   RegisterVehicle(){
-    this.vehicle.cc = this.user.cc;
     this.VehicleService.registrarvehicle(this.vehicle).subscribe(
     (res:any) => {
       if(res.statusCode != 200){
@@ -151,7 +128,6 @@ public FoundVehicle : [];
       }
     }
     )
-    this.ShowVehiclebyuser();
   }
 
   ShowUsers(){

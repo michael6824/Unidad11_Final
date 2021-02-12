@@ -13,7 +13,7 @@ import {FineService} from '../../services/fines.services';
   styleUrls: ['./myfines.component.scss']
 })
 export class MyfinesComponent implements OnInit {
-  public tipo: false;
+  public tipo: boolean;
   public user: User;
   public vehicle: vehicle;
   public findcc: Number;
@@ -27,6 +27,7 @@ public FoundVehicle : [];
   public FoundFines : any = [];
   public FoundFinescc : any = [];
   public FoundFinesplate : any = [];
+  public FoundFinesplatefull : any = [];
   constructor(private VehicleService: VehicleService, private UserService: UserService, private FineService: FineService) { 
     this.vehicle = new vehicle("",0,"","","");
     this.user = new User("","","",0,"","","");
@@ -35,31 +36,34 @@ public FoundVehicle : [];
 
   ngOnInit() {
     this.retrive_data();
-    
   }
-  onEdit(number) {
-    if (this.msg[number]){
-      this.msg[number] = false;
-    } else{
-    this.msg[number] = true;
-  }}
+  onEdit() {
+    this.FoundVehicles.forEach((finevalue, index) => {
+      this.findplate = finevalue.plate;
+      
+      this.ShowFine();
+     
+    })      
+  }
   retrive_data(){
     this.user = JSON.parse(localStorage.getItem('user'))[0];
     this.findcc = this.user.cc;
-    this.ShowFine()
-    
-      }
+    this.tipo = false;
+    this.ShowFine();
+    this.ShowVehiclebyuser();
+}
   ShowFine(){
     this.FineService.showfine(this.findplate,this.findcc,this.tipo).subscribe(
       (res:any) => {
-        console.log(res)
+        
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
-          if (this.tipo){
+          if (!this.tipo){
             this.FoundFinescc = res.foundvehicle;
           } else{
             this.FoundFinesplate = res.foundvehicle;
+            this.FoundFinesplatefull= this.FoundFinesplatefull.concat(this.FoundFinesplate)
           }
           
         }
@@ -85,7 +89,7 @@ public FoundVehicle : [];
       
       if(this.msg[index]){
         this.msg[index] = false;
-        console.log(finevalue)
+        
         this.FineService.updatefine(finevalue).subscribe(
           (res:any) => {
             if(res.statusCode != 200){
@@ -179,6 +183,21 @@ public FoundVehicle : [];
           alert('No se encontró el usuario');
         } else{
           this.FoundUsers = res.allUsers;
+        }
+      }
+    )
+  }
+
+  ShowVehiclebyuser(){
+    
+    this.VehicleService.showvehiclebyuser(this.user.cc).subscribe(
+      (res:any) => {
+        if(res.statusCode != 200) {
+          alert('No se encontró el usuario')
+        } else{
+          this.tipo = true;
+          this.FoundVehicles = res.foundvehicle;
+          this.onEdit();
         }
       }
     )

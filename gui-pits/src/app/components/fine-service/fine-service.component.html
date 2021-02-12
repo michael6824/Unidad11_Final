@@ -1,46 +1,29 @@
 <div class="container">
-    <div class="d-row d-inline-flex w-100" style="background-color: white;">
-        <div class="col-lg-6 col-sm-12 text-justify m-5">
-            <div class="row form-group">
-                <div class="col-6">
-                    <label for="name"><b>Nombre</b></label>
-                </div>
-                <div class="col-6">
-                    {{user.name}}
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-6">
-                    <label for="name"><b>Apellido</b></label>
-                </div>
-                <div class="col-6">
-                    {{user.lastname}}
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-6">
-                    <label for="name"><b>Cc</b></label>
-                </div>
-                <div class="col-6">
-                    {{user.cc}}
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-6">
-                    <label for="name"><b>Correo</b></label>
-                </div>
-                <div class="col-6">
-                    {{user.email}}
-                </div>
-            </div>
+    <div class="row d-flex justify-content-center mt-3">
+        <div class="col-6">
+            <form #listFine="ngForm" (ngSubmit)="ShowFine()">
+                <div class="row form-group d-flex">
+                    <div class="col-4 align-self-center">
+                        <label for="listbyemail"> Buscar por <select name="cc" [(ngModel)]="tipo">
+                            <option [ngValue]="false">Cc</option>
+                            <option [ngValue]="true">Placa</option>
+                            </select>:</label>
+                    </div>
+                    <div class="col-7" *ngIf="!tipo">
+                        <input type="number " name="cc" class="form-control" id="exampleInputEmail1 " aria-describedby="emailHelp " #find_email="ngModel" [(ngModel)]="findcc">
+                    </div>
+                    <div class="col-7" *ngIf="tipo">
+                        <input type="text " name="plate" class="form-control" id="exampleInputEmail1 " aria-describedby="emailHelp " #find_email="ngModel" [(ngModel)]="findplate">
+                    </div>
 
+                    <div class="col-1">
+                        <button type="submit" class="btn btn-dark"><i class=" bi bi-search "></i></button>
+                    </div>
+                </div>
+            </form>
 
         </div>
-        <div class="col-lg-6 col-sm-12 m-5 text-center">
-            <img src="assets/images/user1.JPG" class="float-start rounded">
-            <button type="submit" class="btn btn-dark">Editar</button>
 
-        </div>
     </div>
     <div class="row mt-3">
         <div class="col-12 d-flex">
@@ -56,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <ng-container *ngFor="let fine of FoundFinescc; index as ind">
+                    <ng-container *ngFor="let fine of FoundFines; index as ind">
 
                         <tr *ngIf="!fine.type">
 
@@ -67,16 +50,16 @@
                             </td>
                             <td><input type="text" name="date" class="form-control text-center" #email="ngModel" [(ngModel)]="fine.date" [readonly]="!msg[ind]" id="table">
                             </td>
+
                         </tr>
                     </ng-container>
                 </tbody>
             </table>
         </div>
     </div>
-
     <div class="row mt-3">
         <div class="col-12 d-flex">
-            <table class="table table-striped table-dark mb-5">
+            <table class="table table-striped table-dark">
                 <thead>
                     <tr>
 
@@ -89,8 +72,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <ng-container *ngFor="let fine of FoundFinesplatefull; index as ind">
+                    <ng-container *ngFor="let fine of FoundFines; index as ind">
                         <tr *ngIf="fine.type">
+
                             <td><input type="text " name="cc" class="form-control text-center" #cc="ngModel" [(ngModel)]="fine.plate" [readonly]="!msg[ind]" id="table"></td>
                             <td><input type="text" name="description" class="form-control text-center" #date="ngModel" [(ngModel)]="fine.description" [readonly]="!msg[ind]" id="table">
                             </td>
@@ -104,4 +88,5 @@
             </table>
         </div>
     </div>
+
 </div>

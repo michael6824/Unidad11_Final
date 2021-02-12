@@ -1,6 +1,5 @@
 .responsive {
-    width: 70%;
-    height: 60%;
+    height: 150px;
 }
 
 .responsive2 {
@@ -10,9 +9,14 @@
 }
 
 .texto {
-    color: rgb(154, 157, 141);
+    color: grey //rgb(154, 157, 141);
 }
 
 nav {
     width: 100%;
+}
+
+a {
+    font-size: 20px;
+    font-weight: bold;
 }

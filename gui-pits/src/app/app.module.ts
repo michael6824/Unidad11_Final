@@ -21,6 +21,10 @@ import { MyvehiclesComponent } from './components/myvehicles/myvehicles.componen
 import { MyfinesComponent } from './components/myfines/myfines.component';
 import { RecordsComponent } from './components/records/records.component';
 import { WorkshopsComponent } from './components/workshops/workshops.component';
+import { EnsuranceServiceComponent } from './components/ensurance-service/ensurance-service.component';
+import { VehicleServiceComponent } from './components/vehicle-service/vehicle-service.component';
+import { FineServiceComponent } from './components/fine-service/fine-service.component';
+import { RecordServiceComponent } from './components/record-service/record-service.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { WorkshopsComponent } from './components/workshops/workshops.component';
     MyvehiclesComponent,
     MyfinesComponent,
     RecordsComponent,
-    WorkshopsComponent
+    WorkshopsComponent,
+    EnsuranceServiceComponent,
+    VehicleServiceComponent,
+    FineServiceComponent,
+    RecordServiceComponent
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpClientModule

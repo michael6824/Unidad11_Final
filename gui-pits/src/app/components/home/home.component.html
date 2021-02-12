@@ -2,16 +2,38 @@
     <div class="col-lg-12 col-sm-12">
         <br>
     </div>
-    <div class="col-lg-4 col-sm-12">
-        <button type="button" class="btn btn-dark" data-toggle="tooltip" title="Pits es una plataforma web dedicada a la información de multas, seguros, talleres, repuestos e histórico de vehículos.">¿Qué es PITS?</button>
+    <div class="col-lg-3 col-sm-12 text-center">
+
+        <img src="assets/images/question.png" alt="Los Angeles" width="30%">
+
+        <button type="button" class="btn btn-dark" data-toggle="tooltip" title="Pits es una plataforma web dedicada a la información de multas, seguros, talleres, repuestos e histórico de vehículos.">¿Qué es Pits?</button>
+
+
         <br>
+        <i class="fas fa-camera fa-xs"></i>
     </div>
-    <div class="col-lg-4 col-sm-12">
+    <div class="col-lg-1 col-sm-12">
+        <button class="arrow right">
+        <svg width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
+          <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+          0.375,0.375 20.63,38.087 0.375,75.8 "/>
+        </svg>
+      </button>
+    </div>
+    <div class="col-lg-3 col-sm-12">
         <button type="button" class="btn btn-dark" data-toggle="tooltip" title="100% de confianza, tenemos asociación con: Sura, Coomeva, Secretaría de tránsito y simit.">Confía</button>
         <br>
     </div>
+    <div class="col-lg-1 col-sm-12">
+        <button class="arrow right">
+        <svg width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
+          <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+          0.375,0.375 20.63,38.087 0.375,75.8 "/>
+        </svg>
+      </button>
+    </div>
     <br>
-    <div class="col-lg-4 col-sm-12">
+    <div class="col-lg-3 col-sm-12">
         <button type="button" class="btn btn-dark" data-toggle="tooltip" title="No necesitarás otras plataformas web. Con Pits tienes todo lo que necesitas para tu vehículo en un mismo lugar.">No te Confundas</button>
         <br>
     </div>
@@ -69,13 +91,13 @@
 </div>
 <div class="row text-center">
     <div class="col-lg-4 col-sm-12">
-        <button type="button" class="btn btn-dark">Multas</button>
+        <button type="button" class="btn btn-dark" [routerLink]="['./Fine']">Multas</button>
     </div>
     <div class="col-lg-4 col-sm-12">
-        <button type="button" class="btn btn-dark">Seguros</button>
+        <button type="button" class="btn btn-dark" [routerLink]="['./Ensurance']">Seguros</button>
     </div>
     <div class="col-lg-4 col-sm-12">
-        <button type="button" class="btn btn-dark">Taller Mecánico</button>
+        <button type="button" class="btn btn-dark" [routerLink]="['./Vehicle']">Vehiculos</button>
     </div>
 </div>
 <div class="row text-center">
@@ -91,7 +113,7 @@
         <button type="button" class="btn btn-dark">Repuestos</button>
     </div>
     <div class="col-lg-6 col-sm-12">
-        <button type="button" class="btn btn-dark">Historial Clínico</button>
+        <button type="button" class="btn btn-dark" [routerLink]="['./Record']">Historial Clínico</button>
     </div>
 </div>
 <br>

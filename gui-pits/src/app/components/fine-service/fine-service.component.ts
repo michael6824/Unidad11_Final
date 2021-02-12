@@ -1,90 +1,78 @@
 import { Component, OnInit } from '@angular/core';
 import {vehicle} from '../../models/vehicle';
 import {VehicleService} from '../../services/vehicle.services';
-import {ensurance} from '../../models/ensurances';
-import {EnsuranceService} from '../../services/ensurances.services';
 import {User} from '../../models/user';
+import {UserService} from '../../services/user.service';
+import {fine} from '../../models/fines';
+import {FineService} from '../../services/fines.services';
 
 @Component({
-  selector: 'app-myensurances',
-  templateUrl: './myensurances.component.html',
-  styleUrls: ['./myensurances.component.scss']
+  selector: 'app-fine-service',
+  templateUrl: './fine-service.component.html',
+  styleUrls: ['./fine-service.component.scss']
 })
-export class MyensurancesComponent implements OnInit {
-  public vehicle: vehicle;
+export class FineServiceComponent implements OnInit {
+
+  public tipo: false;
   public user: User;
-  public ensurance: ensurance;
+  public vehicle: vehicle;
+  public findcc: number;
   public findplate: String;
   public msg: boolean[] = [];
   public buttonName:any = 'Show';
-  public findcc: Number;
-
-
-
-public FoundEnsurance : [];
-  public FoundEnsurances : any = [];
-  public FoundEnsurancesfull : any = [];
+public fine: fine;
+public FoundVehicle : [];
   public FoundVehicles : any = [];
-  constructor(private EnsuranceService: EnsuranceService, private VehicleService: VehicleService) { 
-    this.ensurance = new ensurance("","",false,false,"",0,"");
+  public FoundUsers : any = [];
+  public FoundFines : any = [];
+  constructor(private VehicleService: VehicleService, private UserService: UserService, private FineService: FineService) { 
     this.vehicle = new vehicle("",0,"","","");
     this.user = new User("","","",0,"","","");
+    this.fine = new fine("",true,0,"","",0,"");
   }
 
   ngOnInit() {
-this.retrive_data();
-    this.ShowEnsurance();
   }
-  onEdit() {
-    this.FoundVehicles.forEach((finevalue, index) => {
-      this.findplate = finevalue.plate;
-      
-      this.ShowEnsurance();
-     
-    })
-  }
+  onEdit(number) {
+    if (this.msg[number]){
+      this.msg[number] = false;
+    } else{
+    this.msg[number] = true;
+  }}
 
-  retrive_data(){
-    this.user = JSON.parse(localStorage.getItem('user'))[0];
-    this.findcc = this.user.cc;
-    this.ShowVehiclebyuser();
-}
-
-  ShowEnsurance(){
-    
-    this.EnsuranceService.showensurance(this.findplate).subscribe(
+  ShowFine(){
+    this.FineService.showfine(this.findplate,this.findcc,this.tipo).subscribe(
       (res:any) => {
+        console.log(res)
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
-          this.FoundEnsurances = res.allSures;
-          this.FoundEnsurancesfull = this.FoundEnsurancesfull.concat(this.FoundEnsurances)
-         
+          this.FoundFines = res.foundvehicle;
         }
       }
     )
   }
 
-  ShowEnsurances(){
-    this.EnsuranceService.showensurances().subscribe(
+  ShowFines(){
+    this.FineService.showfines().subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
           alert('No se encontró el usuario')
         } else{
          
-          this.FoundEnsurances = res.allSures;
+          this.FoundFines = res.allfines;
         }
       }
     )
   }
 
-  UpdateEnsurance(){
-    this.FoundEnsurances.forEach((ensurancevalue, index) => {
+  UpdateFine(){
+    this.FoundFines.forEach((finevalue, index) => {
       
       if(this.msg[index]){
         this.msg[index] = false;
-       
-        this.EnsuranceService.updateensurance(ensurancevalue).subscribe(
+        console.log(finevalue)
+        this.FineService.updatefine(finevalue).subscribe(
           (res:any) => {
             if(res.statusCode != 200){
               alert('No se puedo registrar el usuario');
@@ -105,15 +93,16 @@ this.retrive_data();
   });
     
   }
-  RemoveEnsurance(ensurance){
-        this.EnsuranceService.removeensurance(ensurance._id).subscribe(
+  RemoveFine(fine){
+    
+        this.FineService.removefine(fine._id).subscribe(
           (res:any) => {
             if(res.statusCode != 200){
-              alert('No se puedo registrar el usuario');
+              alert('No se puedo borrar la multa');
             }
             else{
-              alert('Usuario Borrado');
-              this.ShowVehiclebyuser();
+              alert('Multa Borrada');
+              this.ShowFines()
             }
           },
           (error) => {
@@ -129,15 +118,19 @@ this.retrive_data();
     
   }
 
-  RegisterEnsurance(){
-    this.EnsuranceService.registrarensurance(this.ensurance).subscribe(
+  RegisterFine(){
+   if(this.fine.type){
+     this.fine.cc=null;
+   } else{
+     this.fine.plate="";
+   }
+    this.FineService.registrarfine(this.fine).subscribe(
     (res:any) => {
       if(res.statusCode != 200){
         alert('No se puedo registrar el usuario');
       }
       else{
         alert('Registro Exitoso');
-        this.ShowVehiclebyuser();
       }
     },
     (error) => {
@@ -147,30 +140,31 @@ this.retrive_data();
       }
     }
     )
-  }
 
+    this.fine.cc = null;
+    this.fine.plate = "";
+
+  }
   ShowVehicles(){
-    
     this.VehicleService.showvehicles().subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
-          alert('No se encontró el usuario');
+          alert('No se encontró el usuario')
         } else{
+         
           this.FoundVehicles = res.allUsers;
         }
       }
     )
   }
-  ShowVehiclebyuser(){
-    
-    this.VehicleService.showvehiclebyuser(this.user.cc).subscribe(
+  ShowUsers(){
+    this.ShowVehicles();
+    this.UserService.showusers().subscribe(
       (res:any) => {
         if(res.statusCode != 200) {
-          alert('No se encontró el usuario')
+          alert('No se encontró el usuario');
         } else{
-          this.FoundVehicles = res.foundvehicle;
-          this.FoundEnsurancesfull = [];
-          this.onEdit();
+          this.FoundUsers = res.allUsers;
         }
       }
     )

@@ -39,7 +39,7 @@ export class VehicleService {
   showvehiclebyuser(email: vehicle["cc"]): Observable<any> {
     
     let options = {headers: new HttpHeaders({'Content-type':'application/json'})};
-    return this._http.get(this.apiURL + "vehicle/"+email, options).pipe((res) => res);
+    return this._http.get(this.apiURL + "Vehiclebyuser/"+email, options).pipe((res) => res);
   }
 
   showvehicles(): Observable<any> {

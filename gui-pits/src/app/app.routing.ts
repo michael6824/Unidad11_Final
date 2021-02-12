@@ -15,7 +15,10 @@ import {MyensurancesComponent} from './components/myensurances/myensurances.comp
 import {MyfinesComponent} from './components/myfines/myfines.component'
 import {MyvehiclesComponent} from './components/myvehicles/myvehicles.component'
 import {ListFinesComponent} from './components/list-fines/list-fines.component'
-
+import {FineServiceComponent} from './components/fine-service/fine-service.component';
+import {VehicleServiceComponent} from './components/vehicle-service/vehicle-service.component';
+import {RecordServiceComponent} from './components/Record-service/record-service.component';
+import {EnsuranceServiceComponent} from './components/Ensurance-service/ensurance-service.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -32,7 +35,11 @@ const appRoutes: Routes = [
     {path: 'myaccount', component: SesionComponent},
     {path: 'myaccount/myensurances', component: MyensurancesComponent},
     {path: 'myaccount/myfines', component: MyfinesComponent},
-    {path: 'myaccount/myvehicles', component: MyvehiclesComponent}
+    {path: 'myaccount/myvehicles', component: MyvehiclesComponent},
+    {path: 'Fine', component: FineServiceComponent},
+    {path: 'Record', component: RecordServiceComponent},
+    {path: 'Vehicle', component: VehicleServiceComponent},
+    {path: 'Ensurance', component: EnsuranceServiceComponent}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
