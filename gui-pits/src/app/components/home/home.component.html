@@ -1,45 +1,49 @@
-<div class="row text-center" style="background-color: grey;">
-    <div class="col-lg-12 col-sm-12">
-        <br>
-    </div>
+<div class="greydiv">
+    <br>
+</div>
+<div class="row text-center" style="background-color: white;">
+
     <div class="col-lg-3 col-sm-12 text-center">
 
-        <img src="assets/images/question.png" alt="Los Angeles" width="30%">
+        <img src="assets/images/question.png" alt="Los Angeles" width="20%">
 
-        <button type="button" class="btn btn-dark" data-toggle="tooltip" title="Pits es una plataforma web dedicada a la información de multas, seguros, talleres, repuestos e histórico de vehículos.">¿Qué es Pits?</button>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#WhatisPits" title="Pits es una plataforma web dedicada a la información de multas, seguros, talleres, repuestos e histórico de vehículos.">¿Qué es Pits?</button>
 
 
         <br>
-        <i class="fas fa-camera fa-xs"></i>
+
     </div>
     <div class="col-lg-1 col-sm-12">
         <button class="arrow right">
         <svg width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
-          <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+          <polyline fill="none" stroke=red stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
           0.375,0.375 20.63,38.087 0.375,75.8 "/>
         </svg>
       </button>
     </div>
     <div class="col-lg-3 col-sm-12">
-        <button type="button" class="btn btn-dark" data-toggle="tooltip" title="100% de confianza, tenemos asociación con: Sura, Coomeva, Secretaría de tránsito y simit.">Confía</button>
+        <img src="assets/images/confianza.jpg" alt="Los Angeles" width="30%">
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#trust" title="100% de confianza, tenemos asociación con: Sura, Coomeva, Secretaría de tránsito y simit.">Confía</button>
         <br>
     </div>
     <div class="col-lg-1 col-sm-12">
         <button class="arrow right">
         <svg width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
-          <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+          <polyline fill="none" stroke=red stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
           0.375,0.375 20.63,38.087 0.375,75.8 "/>
         </svg>
       </button>
     </div>
     <br>
     <div class="col-lg-3 col-sm-12">
-        <button type="button" class="btn btn-dark" data-toggle="tooltip" title="No necesitarás otras plataformas web. Con Pits tienes todo lo que necesitas para tu vehículo en un mismo lugar.">No te Confundas</button>
+        <img src="assets/images/Seguridad.png" alt="Los Angeles" width="30%">
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#nodudes" title="No necesitarás otras plataformas web. Con Pits tienes todo lo que necesitas para tu vehículo en un mismo lugar.">No te Confundas</button>
         <br>
     </div>
-    <div class="col-lg-12 col-sm-12">
-        <br>
-    </div>
+
+</div>
+<div class="greydiv">
+    <br>
 </div>
 <br>
 <div id="demo" class="carousel slide" data-ride="carousel">
@@ -73,10 +77,15 @@
     </a>
 </div>
 <br>
-<div style="background-color: grey;">
+<div class="greydiv">
     <br>
+</div>
+<div class="text-center">
+
     <h1>Servicios</h1>
-    <hr width="75%" />
+</div>
+<div class="greydiv">
+    <br>
 </div>
 <div class="row text-center">
     <div class="col-lg-4 col-sm-12">
@@ -117,10 +126,14 @@
     </div>
 </div>
 <br>
-<div style="background-color: grey;">
+<div class="greydiv text-center">
     <br>
+</div>
+<div class="text-center">
     <h1>Nuestros Aliados</h1>
-    <hr width="75%" />
+</div>
+<div class="greydiv">
+    <br>
 </div>
 <div id="carouselExampleFade" class="carousel slide carousel-active mb-5" data-ride="carousel">
     <div class="carousel-inner">
@@ -142,4 +155,78 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+</div>
+
+
+
+<!-- The Modal -->
+<div class="modal" id="WhatisPits">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h1 class="modal-title">¿Qué es Pits?</h1>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Pits es una plataforma web dedicada a la información de multas, seguros, talleres, repuestos e histórico de vehículos.
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="trust">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h1 class="modal-title">Confía</h1>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                100% de confianza, tenemos asociación con: Sura, Coomeva, Secretaría de tránsito y simit.
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal" id="nodudes">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h1 class="modal-title">No te Confundas</h1>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                No necesitarás otras plataformas web. Con Pits tienes todo lo que necesitas para tu vehículo en un mismo lugar.
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
 </div>
