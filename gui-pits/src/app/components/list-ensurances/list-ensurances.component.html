@@ -42,7 +42,7 @@
                         <td><input type="text" name="name" class="form-control text-center" #tipo="ngModel" [(ngModel)]="ensurance.type" [readonly]="!msg[ind]" id="table">
                         </td>
                         <td><input type="number " name="plate" class="form-control text-center" #cc="ngModel" [(ngModel)]="ensurance.value" [readonly]="true" id="table"></td>
-                        <td><input type="date" name="brand" class="form-control text-center" #date="ngModel" [(ngModel)]="ensurance.date" [readonly]="!msg[ind]" id="table">
+                        <td><input type="datetime" name="brand" class="form-control text-center" #date="ngModel" [(ngModel)]="ensurance.date" [readonly]="!msg[ind]" id="table">
                         </td>
                         <td>
                             <button class="btn btn-success" name="edit" id={{vehicle._id}} (click)="onEdit(ind)"><i class=" bi bi-pencil "></i></button></td>

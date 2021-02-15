@@ -1,180 +1,193 @@
-<div class="container">
-    <div class="d-row d-inline-flex w-100" style="background-color: white;">
-        <div class="col-lg-6 col-sm-12 text-justify m-5">
-            <div class="row form-group">
-                <div class="col-6">
-                    <label for="name"><b>Nombre</b></label>
+<div class="container justify-content-center align-items-center">
+    <div class="container justify-content-center align-items-center">
+        <div class="d-row d-inline-flex w-100" style="background-color: white;">
+            <div class="col-lg-6 col-sm-12 icolor text-justify m-1">
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label for="name"><b>Nombre</b></label>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 icolor">
+                        {{user.name}}
+                    </div>
                 </div>
-                <div class="col-6">
-                    {{user.name}}
+                <div class="row form-group">
+                    <div class="col-lg-6 col-sm-12 icolor">
+                        <label for="name"><b>Apellido</b></label>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 icolor">
+                        {{user.lastname}}
+                    </div>
                 </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-6">
-                    <label for="name"><b>Apellido</b></label>
+                <div class="row form-group">
+                    <div class="col-lg-6 col-sm-12 icolor">
+                        <label for="name"><b>Cc</b></label>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 icolor">
+                        {{user.cc}}
+                    </div>
                 </div>
-                <div class="col-6">
-                    {{user.lastname}}
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-6">
-                    <label for="name"><b>Cc</b></label>
-                </div>
-                <div class="col-6">
-                    {{user.cc}}
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-6">
-                    <label for="name"><b>Correo</b></label>
-                </div>
-                <div class="col-6">
-                    {{user.email}}
-                </div>
-            </div>
-
-
-        </div>
-        <div class="col-lg-6 col-sm-12 m-5 text-center">
-            <img src="assets/images/user1.JPG" class="float-start rounded">
-            <button type="submit" class="btn btn-dark">Editar</button>
-
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-12 d-flex">
-            <table class="table table-striped table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col" class="text-center">Placa</th>
-                        <th scope="col" class="text-center">Tipo</th>
-                        <th scope="col" class="text-center">Valor</th>
-                        <th scope="col" class="text-center">Fecha</th>
-                        <th scope="col" class="text-center"></th>
-                        <th scope="col" class="text-center"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let ensurance of FoundEnsurancesfull; index as ind">
-                        <td><input type="text " name="cc" class="form-control text-center" #name="ngModel" [(ngModel)]="ensurance.plate" [readonly]="true" id="table">
-                        </td>
-                        <td><input type="text" name="name" class="form-control text-center" #tipo="ngModel" [(ngModel)]="ensurance.type" [readonly]="!msg[ind]" id="table">
-                        </td>
-                        <td><input type="number " name="plate" class="form-control text-center" #cc="ngModel" [(ngModel)]="ensurance.value" [readonly]="true" id="table"></td>
-                        <td><input type="date" name="brand" class="form-control text-center" #date="ngModel" [(ngModel)]="ensurance.date" [readonly]="!msg[ind]" id="table">
-                        </td>
-                        <td>
-                            <button class="btn btn-success" name="edit" id={{vehicle._id}} (click)="onEdit(ind)"><i class=" bi bi-pencil "></i></button></td>
-                        <td>
-                            <form #registrarEstudianteForm="ngForm" (ngSubmit)="RemoveEnsurance(ensurance)"><button class="btn btn-danger "><i class="bi bi-person-dash-fill "></i></button></form>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row mb-5 flex-row-reverse mr-1">
-        <form #registrarEstudianteForm="ngForm" (ngSubmit)="UpdateEnsurance()">
-            <button type="submit" class="btn btn-dark">Actualizar</button>
-        </form>
-        <form #registrarEstudianteForm="ngForm">
-            <button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#registrov" (click)="ShowVehiclebyuser()">Registrar</button>
-        </form>
-    </div>
-
-</div>
-
-<div class="container ">
-    <!-- The Modal -->
-    <div class="modal fade " id="registrov">
-        <div class="modal-dialog modal-dialog-centered ">
-            <div class="modal-content ">
-
-                <!-- Modal Header -->
-                <div class="modal-header ">
-                    <h4 class="modal-title ">Registrar Seguro</h4>
-                    <button type="button " class="close " data-dismiss="modal ">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body ">
-                    <div class="container">
-                        <h1 class="text-center mt-5"> Seguro</h1>
-                        <div class="row d-flex justify-content-center mt-5">
-                            <div class="col-9">
-
-                                <form #registrarEstudianteForm="ngForm" (ngSubmit)="RegisterEnsurance()">
-                                    <div class="row form-group">
-                                        <div class="col-6">
-                                            <label for="plate">Placa:</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <select name="cc" [(ngModel)]="ensurance.plate">
-                                            <option [value]="vehicle.plate" *ngFor="let vehicle of FoundVehicles">{{vehicle.plate}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col-6">
-                                            <label for="status">Status:</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <select name="status" [(ngModel)]="ensurance.status">
-                                                <option [ngValue]="false">Inactivo</option>
-                                            <option [ngValue]="true">Activo</option>
-                                                </select>
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col-6">
-                                            <label for="plate">Tipo:</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <select name="status" [(ngModel)]="ensurance.type">
-                                                <option [ngValue]="false">SOAT</option>
-                                            <option [ngValue]="true">Seguro Todo Riesgo</option>
-                                                </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col-6">
-                                            <label for="description">Description:</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" id="description" name="description" #firstName="ngModel" [(ngModel)]="ensurance.description">
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col-6">
-                                            <label for="value">Valor:</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="number" class="form-control" id="value" name="value" #firstName="ngModel" [(ngModel)]="ensurance.value">
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col-6">
-                                            <label for="date">Fecha:</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="date" class="form-control" id="description" name="description" #firstName="ngModel" [(ngModel)]="ensurance.date">
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center">
-                                        <button type="submit" class="btn btn-primary">Registrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
+                <div class="row form-group">
+                    <div class="col-lg-6 col-sm-12 icolor">
+                        <label for="name"><b>Correo</b></label>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 icolor">
+                        {{user.email}}
                     </div>
                 </div>
 
+
+            </div>
+            <div class="flex-column col-lg-6 col-sm-12 icolor text-center">
+                <div class="p-2"> <img src="assets/images/user1.JPG" class="float-start rounded"></div>
+                <div class="p-2"><button type="submit" class="btn btn-dark">Editar</button></div>
+
             </div>
         </div>
+
+        <div class="greydiv text-center">
+            <br>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 text-center ">
+                <h1>Mis Seguros</h1>
+            </div>
+            <div class="col-12 d-flex">
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Placa</th>
+                            <th scope="col" class="text-center">Tipo</th>
+                            <th scope="col" class="text-center">Valor</th>
+                            <th scope="col" class="text-center">Fecha</th>
+                            <th scope="col" class="text-center"></th>
+                            <th scope="col" class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ensurance of FoundEnsurancesfull; index as ind">
+                            <td><input type="text " name="cc" class="form-control text-center" #name="ngModel" [(ngModel)]="ensurance.plate" [readonly]="true" id="table">
+                            </td>
+                            <td>
+
+                                <p id="table" *ngIf="ensurance.type">Seguro Todo Riesgo</p>
+                                <p id="table" *ngIf="!ensurance.type">SOAT</p>
+                                <input type="text" name="name" class="form-control text-center" #tipo="ngModel" [(ngModel)]="ensurance.type" [readonly]="!msg[ind]" id="table">
+                            </td>
+                            <td class="text-center"><input type="number " name="plate" class="form-control text-center" #cc="ngModel" [(ngModel)]="ensurance.value" [readonly]="true" id="table"></td>
+                            <td><input type="datetime" name="brand" class="form-control text-center" #date="ngModel" [(ngModel)]="ensurance.date" [readonly]="!msg[ind]" id="table">
+
+                            </td>
+                            <td>
+                                <button class="btn btn-secondary" name="edit" id={{vehicle._id}} (click)="onEdit(ind)"><i class=" bi bi-pencil "></i></button></td>
+                            <td>
+                                <form #registrarEstudianteForm="ngForm" (ngSubmit)="RemoveEnsurance(ensurance)"><button class="btn btn-danger "><i class="bi bi-person-dash-fill "></i></button></form>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row mb-5 flex-row-reverse mr-1">
+            <form #registrarEstudianteForm="ngForm" (ngSubmit)="UpdateEnsurance()">
+                <button type="submit" class="btn btn-dark">Actualizar</button>
+            </form>
+            <form #registrarEstudianteForm="ngForm">
+                <button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#registrov" (click)="ShowVehiclebyuser()">Registrar</button>
+            </form>
+        </div>
+
     </div>
 
-</div>
+    <div class="container ">
+        <!-- The Modal -->
+        <div class="modal fade " id="registrov">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content ">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header ">
+                        <h4 class="modal-title ">Registrar Seguro</h4>
+                        <button type="button " class="close " data-dismiss="modal ">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body ">
+                        <div class="container">
+                            <h1 class="text-center mt-5"> Seguro</h1>
+                            <div class="row d-flex justify-content-center mt-5">
+                                <div class="col-9">
+
+                                    <form #registrarEstudianteForm="ngForm" (ngSubmit)="RegisterEnsurance()">
+                                        <div class="row form-group">
+                                            <div class="col-6">
+                                                <label for="plate">Placa:</label>
+                                            </div>
+                                            <div class="col-6">
+                                                <select name="cc" [(ngModel)]="ensurance.plate">
+                                            <option [value]="vehicle.plate" *ngFor="let vehicle of FoundVehicles">{{vehicle.plate}}</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-6">
+                                                <label for="status">Status:</label>
+                                            </div>
+                                            <div class="col-6">
+                                                <select name="status" [(ngModel)]="ensurance.status">
+                                                <option [ngValue]="false">Inactivo</option>
+                                            <option [ngValue]="true">Activo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-6">
+                                                <label for="plate">Tipo:</label>
+                                            </div>
+                                            <div class="col-6">
+                                                <select name="status" [(ngModel)]="ensurance.type">
+                                                <option [ngValue]="false">SOAT</option>
+                                            <option [ngValue]="true">Seguro Todo Riesgo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-6">
+                                                <label for="description">Description:</label>
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" id="description" name="description" #firstName="ngModel" [(ngModel)]="ensurance.description">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-6">
+                                                <label for="value">Valor:</label>
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="number" class="form-control" id="value" name="value" #firstName="ngModel" [(ngModel)]="ensurance.value">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-6">
+                                                <label for="date">Fecha:</label>
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="date" class="form-control" id="description" name="description" #firstName="ngModel" [(ngModel)]="ensurance.date">
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <button type="submit" class="btn btn-primary">Registrar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>

@@ -1,49 +1,53 @@
-<div class="d-row d-inline-flex w-100" style="background-color: white;">
-    <div class="col-lg-6 col-sm-12 text-justify m-5">
-        <div class="row form-group">
-            <div class="col-6">
-                <label for="name"><b>Nombre</b></label>
-            </div>
-            <div class="col-6">
-                {{user.name}}
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-6">
-                <label for="name"><b>Apellido</b></label>
-            </div>
-            <div class="col-6">
-                {{user.lastname}}
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-6">
-                <label for="name"><b>Cc</b></label>
-            </div>
-            <div class="col-6">
-                {{user.cc}}
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-6">
-                <label for="name"><b>Correo</b></label>
-            </div>
-            <div class="col-6">
-                {{user.email}}
-            </div>
-        </div>
-
-
-    </div>
-    <div class="col-lg-6 col-sm-12 m-5 text-center">
-        <img src="assets/images/user1.JPG" class="float-start rounded">
-        <button type="submit" class="btn btn-dark">Editar</button>
-
-    </div>
-</div>
 <div class="container">
-    <div class="row mt-3 text-center">
-        <h1>Vehiculos</h1>
+    <div class="d-row d-inline-flex w-100" style="background-color: white;">
+        <div class="col-lg-6 col-sm-12 icolor text-justify m-1">
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="name"><b>Nombre</b></label>
+                </div>
+                <div class="col-lg-6 col-sm-12 icolor">
+                    {{user.name}}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-6 col-sm-12 icolor">
+                    <label for="name"><b>Apellido</b></label>
+                </div>
+                <div class="col-lg-6 col-sm-12 icolor">
+                    {{user.lastname}}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-6 col-sm-12 icolor">
+                    <label for="name"><b>Cc</b></label>
+                </div>
+                <div class="col-lg-6 col-sm-12 icolor">
+                    {{user.cc}}
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-6 col-sm-12 icolor">
+                    <label for="name"><b>Correo</b></label>
+                </div>
+                <div class="col-lg-6 col-sm-12 icolor">
+                    {{user.email}}
+                </div>
+            </div>
+
+
+        </div>
+        <div class="flex-column col-lg-6 col-sm-12 icolor text-center">
+            <div class="p-2"> <img src="assets/images/user1.JPG" class="float-start rounded"></div>
+            <div class="p-2"><button type="submit" class="btn btn-dark">Editar</button></div>
+
+        </div>
+    </div>
+
+    <div class="greydiv text-center">
+        <br>
+    </div>
+    <div class="col-12 text-center ">
+        <h1>Mis Vehiculos</h1>
     </div>
     <div class="row mt-3">
         <div class="col-12 d-flex">
@@ -65,7 +69,7 @@
                         <td><input type="text" name="brand" class="form-control text-center" #date="ngModel" [(ngModel)]="vehicle.brand" [readonly]="!msg[ind]" id="table">
                         </td>
                         <td>
-                            <button class="btn btn-success" name="edit" id={{vehicle._id}} (click)="onEdit(ind)"><i class=" bi bi-pencil "></i></button></td>
+                            <button class="btn btn-secondary" name="edit" id={{vehicle._id}} (click)="onEdit(ind)"><i class=" bi bi-pencil "></i></button></td>
                         <td>
                             <form #registrarEstudianteForm="ngForm" (ngSubmit)="RemoveVehicle(vehicle)"><button class="btn btn-danger "><i class="bi bi-person-dash-fill "></i></button></form>
                         </td>

@@ -1,69 +1,73 @@
-<div class="d-row d-inline-flex w-100" style="background-color: white;">
-    <div class="col-lg-6 col-sm-12 text-justify m-5">
-        <div class="row form-group">
-            <div class="col-6">
-                <label for="name"><b>Nombre</b></label>
+<div class="container">
+    <div class="d-row d-inline-flex w-100" style="background-color: white;">
+        <div class="col-lg-6 col-sm-12 icolor text-justify m-1">
+            <div class="row form-group">
+                <div class="col-6">
+                    <label for="name"><b>Nombre</b></label>
+                </div>
+                <div class="col-lg-6 col-sm-12 icolor">
+                    {{user.name}}
+                </div>
             </div>
-            <div class="col-6">
-                {{user.name}}
+            <div class="row form-group">
+                <div class="col-lg-6 col-sm-12 icolor">
+                    <label for="name"><b>Apellido</b></label>
+                </div>
+                <div class="col-lg-6 col-sm-12 icolor">
+                    {{user.lastname}}
+                </div>
             </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-6">
-                <label for="name"><b>Apellido</b></label>
+            <div class="row form-group">
+                <div class="col-lg-6 col-sm-12 icolor">
+                    <label for="name"><b>Cc</b></label>
+                </div>
+                <div class="col-lg-6 col-sm-12 icolor">
+                    {{user.cc}}
+                </div>
             </div>
-            <div class="col-6">
-                {{user.lastname}}
+            <div class="row form-group">
+                <div class="col-lg-6 col-sm-12 icolor">
+                    <label for="name"><b>Correo</b></label>
+                </div>
+                <div class="col-lg-6 col-sm-12 icolor">
+                    {{user.email}}
+                </div>
             </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-6">
-                <label for="name"><b>Cc</b></label>
-            </div>
-            <div class="col-6">
-                {{user.cc}}
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-6">
-                <label for="name"><b>Correo</b></label>
-            </div>
-            <div class="col-6">
-                {{user.email}}
-            </div>
-        </div>
 
 
+        </div>
+        <div class="flex-column col-lg-6 col-sm-12 icolor text-center">
+            <div class="p-2"> <img src="assets/images/user1.JPG" class="float-start rounded"></div>
+            <div class="p-2"><button type="submit" class="btn btn-dark">Editar</button></div>
+
+        </div>
     </div>
-    <div class="col-lg-6 col-sm-12 m-5 text-center">
-        <img src="assets/images/user1.JPG" class="float-start rounded">
-        <button type="submit" class="btn btn-dark">Editar</button>
 
+    <div class="greydiv text-center">
+        <br>
     </div>
+    <br>
+    <div class="row text-center mt-2">
+        <div class="col-4">
+            <img src="../../../assets/images/Seguroicon.png" class="float-start imgr">
+        </div>
+        <div class="col-4">
+            <img src="../../../assets/images/Vehiculo_icon.png" class="float-start imgr">
+        </div>
+        <div class="col-4">
+            <img src="../../../assets/images/multas_icon.png" class="float-start imgr">
+        </div>
+    </div>
+    <div class="row text-center mb-5">
+        <div class="col-4">
+            <button type="button" class="btn btn-dark" [routerLink]="['./myensurances']">Mis Seguros</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn btn-dark" [routerLink]="['./myvehicles']">Mis Vehiculos</button>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn btn-dark" [routerLink]="['./myfines']">Mis Multas</button>
+        </div>
+    </div>
+    <br>
 </div>
-
-<hr class="w-75">
-<div class="row text-center mt-2">
-    <div class="col-4">
-        <img src="../../../assets/images/Seguroicon.png" class="float-start imgr">
-    </div>
-    <div class="col-4">
-        <img src="../../../assets/images/Vehiculo_icon.png" class="float-start imgr">
-    </div>
-    <div class="col-4">
-        <img src="../../../assets/images/multas_icon.png" class="float-start imgr">
-    </div>
-</div>
-<div class="row text-center mb-5">
-    <div class="col-4">
-        <button type="button" class="btn btn-dark" [routerLink]="['./myensurances']">Mis Seguros</button>
-    </div>
-    <div class="col-4">
-        <button type="button" class="btn btn-dark" [routerLink]="['./myvehicles']">Mis Vehiculos</button>
-    </div>
-    <div class="col-4">
-        <button type="button" class="btn btn-dark" [routerLink]="['./myfines']">Mis Multas</button>
-    </div>
-</div>
-
-<br>

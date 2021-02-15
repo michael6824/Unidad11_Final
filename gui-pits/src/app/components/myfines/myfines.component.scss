@@ -1,0 +1,52 @@
+.tablesize {
+    font-size: 13px !important;
+}
+
+.form-control:disabled,
+.form-control[readonly][id="table"] {
+    background-color: transparent;
+    opacity: 1;
+    border: 0;
+    font-size: 13px !important;
+    height: 15px;
+    width: 100%;
+    color: white;
+}
+
+.form-control:not([readonly])[id="table"] {
+    background-color: grey;
+    opacity: 1;
+    border: 0;
+    font-size: 13px !important;
+    height: 15px;
+    width: 100%;
+    color: white;
+}
+
+label {
+    color: rgb(77, 76, 76);
+    font-weight: bold;
+}
+
+.icolor {
+    color: grey;
+}
+
+.greydiv {
+    background-color: grey;
+}
+
+p {
+    text-align: center;
+    font-size: 13px !important;
+}
+
+h1 {
+    color: RGB(155, 0, 12);
+    font-weight: bold;
+    font-size: larger;
+}
+
+input {
+    text-align: center;
+}
